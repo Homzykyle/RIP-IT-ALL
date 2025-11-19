@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Downloads</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="title">Download Hub</h1>
+    <p class="subtitle">Auto-Generated Downloads</p>
+
+    <div id="download-list" class="downloads"></div>
+</div>
+
+<script>
+    // Load JSON file
+    fetch('downloads.json')
+      .then(response => response.json())
+      .then(files => {
+          const list = document.getElementById("download-list");
+
+          files.forEach(file => {
+              list.innerHTML += `
+                <div class="card">
+                    <h2>${file.name}</h2>
+                    <a href="${file.url}" class="btn" target="_blank">Download</a>
+                </div>
+              `;
+          });
+      })
+      .catch(error => console.error("Error loading downloads:", error));
+</script>
+
+</body>
+</html>
